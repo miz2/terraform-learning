@@ -1,0 +1,12 @@
+source .env
+terraform init 
+
+terraform apply
+
+Now our ec2 instance will get created as per the details given in main.tf
+
+Resource change 
+
+terraform apply 
+give confirmation yes
+
