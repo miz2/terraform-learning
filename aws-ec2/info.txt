@@ -11,3 +11,9 @@ terraform apply
 give confirmation yes
 
 Now we create an amazon linux based change ami in main.tf
+
+To terminate the running resources
+terraform destroy
+
+Used to validate the tf file 
+terraform validate 
