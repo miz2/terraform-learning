@@ -10,3 +10,4 @@ Resource change
 terraform apply 
 give confirmation yes
 
+Now we create an amazon linux based change ami in main.tf
