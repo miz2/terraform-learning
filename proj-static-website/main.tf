@@ -23,7 +23,7 @@ resource "aws_s3_bucket" "demo-web-app-bucket-terraform" {
 }
 
 resource "aws_s3_bucket_public_access_block" "example" {
-    bucket = aws_s3_bucket.demo-web-app-bucket-terraform.bucket
+    bucket = aws_s3_bucket.demo-web-app-bucket-terraform.id
     block_public_acls = false
     block_public_policy = false
     ignore_public_acls = false
@@ -43,21 +43,6 @@ resource "aws_s3_bucket_policy" "mywebapp" {
         ]
     })
 }
-resource "aws_s3_object" "index_html" {
-    bucket = aws_s3_bucket.demo-web-app-bucket-terraform.bucket
-    key    = "index.html"
-    source = "./index.html"
-    content_type = "text/html"
-}
-resource "aws_s3_object" "styles_css" {
-    bucket = aws_s3_bucket.demo-web-app-bucket-terraform.bucket
-    key    = "styles.css"
-    source = "./styles.css"
-    content_type= "text/css"
-}
-output "name" {
-  value = random_id.rand_id.hex
-}
 resource "aws_s3_bucket_website_configuration" "mywebapp" {
   bucket = aws_s3_bucket.demo-web-app-bucket-terraform.id
   index_document {
@@ -73,6 +58,23 @@ resource "aws_s3_bucket_website_configuration" "mywebapp" {
     }
   }
 }
+
+resource "aws_s3_object" "index_html" {
+    bucket = aws_s3_bucket.demo-web-app-bucket-terraform.bucket
+    key    = "index.html"
+    source = "./index.html"
+    content_type = "text/html"
+}
+resource "aws_s3_object" "styles_css" {
+    bucket = aws_s3_bucket.demo-web-app-bucket-terraform.bucket
+    key    = "styles.css"
+    source = "./styles.css"
+    content_type= "text/css"
+}
+output "name" {
+  value = random_id.rand_id.hex
+}
+
 # need to add policies then our website will be accesible 
 output "namewebsite" {
   value = aws_s3_bucket_website_configuration.mywebapp.website_endpoint
