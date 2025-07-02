@@ -59,12 +59,27 @@ data "aws_caller_identity" "nameofcaller" {
 output "nameofcaller" {
   value = data.aws_caller_identity.nameofcaller.account_id
 }
-
+data "subnet_id" "subnet1" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.vpc1.id]
+  }
+  tags = {
+    Name = "private-subnet"
+    ENV= "PROD"
+  }
+}
 # can fetch the dynamic data 
 # but do not apply as this may result in extra charges :use terrafrom plan and not apply
+output "subnet_id" {
+  value = data.subnet_id.subnet1.id
+}
 resource "aws_instance" "myserver2" {
-    ami = "${data.aws_ami.name.id}"
+  # ami can also be hardcoded 
+    ami = "${data.aws_ami.name.id}" 
     instance_type = "t2.micro"
+    subnet_id = data.subnet_id.subnet1.id
+    security_groups = [data.aws_security_group.sg-1.name]
     tags = {
       Name="SampleServer"
     }
