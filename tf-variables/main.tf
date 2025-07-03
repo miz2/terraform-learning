@@ -32,3 +32,4 @@ resource "aws_instance" "myserver" {
 }
 
 # can set environment variables which then we do not need to set it in the terminal
+# can also use local variables as per need 
