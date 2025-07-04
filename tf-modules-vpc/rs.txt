@@ -1,0 +1,4 @@
+grouping is done here
+Modules are containers for multiple resources that are used together
+They are main way to package and reuse resource configs with terraform
+It used to deliver 
