@@ -4,6 +4,10 @@ variable "vpc_config" {
     cidr_block = string
     name        = string
   })
+  validation {
+    condition = can(cidrnetmask(var.vpc_config.cidr_block)) && can(cidrhost(var.vpc_config.cidr_block, 1))
+    error_message = "Invalid CIDR format ${var.vpc_config.cidr_block}. Please provide a valid CIDR block."
+  }
 }
 
 variable "subnet_config" {
@@ -12,4 +16,10 @@ variable "subnet_config" {
     cidr_block = string
     az         = string
   }))
+  validation {
+    condition = alltrue([
+      for subnet in var.subnet_config : can(cidrnetmask(subnet.cidr_block)) && can(cidrhost(subnet.cidr_block, 1))
+    ])
+    error_message = "Invalid CIDR format in subnet configuration. Please provide valid CIDR blocks."
+  }
 }
