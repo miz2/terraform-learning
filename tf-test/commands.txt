@@ -1,0 +1,12 @@
+terraform state list
+
+terraform state show aws_instance.myserver
+
+terraform state pull
+terraform state rm
+terraform state mv
+terraform state replace-provider
+terraform state show
+terraform state get
+terraform state list
+terraform state push

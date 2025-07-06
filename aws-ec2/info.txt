@@ -17,3 +17,29 @@ terraform destroy
 
 Used to validate the tf file 
 terraform validate 
+
+
+can choose one of the below mentioned typed
+lifecycle{
+    create_before_destroy=true
+    prevent destroy=true
+    replace_trigerred_by=[
+        aws_security_group.main,aws_security_group.main.ingress
+    ]
+
+    precondition{
+    condition=var.bucket_name !=""
+    error_message="sdkhfbsgs"
+}
+
+postcondition{
+    condition=var.bucket_name !=""
+    error_message="sdkhfbsgs"
+}
+}
+ignore_changes=[
+        password_length,
+        password_reset_required,
+        pgp_key
+    ]
+

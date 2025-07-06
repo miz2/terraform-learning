@@ -1,0 +1,13 @@
+terraform import aws_s3_bucket.main <bucket name and id>
+# Commands for managing Terraform workspaces
+terraform workspace list          # List all workspaces
+terraform workspace new <name>    # Create a new workspace
+terraform workspace select <name>  # Select an existing workspace
+terraform workspace show           # Show the current workspace
+terraform workspace delete <name>  # Delete a workspace
+# END: workspace_commands
+
+# Description of Terraform Workspaces
+# A workspace in Terraform is an isolated environment for managing infrastructure. 
+# Each workspace has its own state file, allowing you to manage different environments (e.g., development, staging, production) 
+# without interference. Workspaces are useful for organizing resources and managing multiple instances of the same infrastructure.
