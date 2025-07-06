@@ -17,4 +17,7 @@ resource "aws_instance" "myserver2" {
     tags = {
       Name="SampleServer"
     }
+    lifecycle {
+      create_before_destroy = true
+    }
 }
