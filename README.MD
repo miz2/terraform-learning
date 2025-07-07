@@ -20,7 +20,7 @@ Provide a brief description of the project and its purpose. Explain what AWS res
 1. Ensure you have [Terraform](https://www.terraform.io/downloads.html) installed on your machine.
 2. Clone this repository:
     ```bash
-    git clone https://github.com/yourusername/Terraform-aws.git
+    git clone https://github.com/miz2/terraform-learning.git
     ```
 3. Navigate to the project directory:
     ```bash
